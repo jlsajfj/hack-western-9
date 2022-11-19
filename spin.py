@@ -31,3 +31,9 @@ def ccw(n):
         sleep(SLEEP_TIME)
         GPIO.output(motor_channel, (GPIO.HIGH,GPIO.HIGH,GPIO.LOW,GPIO.LOW))
         sleep(SLEEP_TIME)
+
+def open_door():
+    cw(135)
+    time.sleep(5)
+    ccw(135)
+    return
