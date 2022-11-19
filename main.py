@@ -25,6 +25,6 @@ if __name__ == '__main__':
                 response = requests.request("GET", alert_url, headers={}, data={})
                 
                 if response.text == 'approve':
-                    spin.open_door('right')
+                    spin.open_door()#'right')
             
             ser.reset_input_buffer()
