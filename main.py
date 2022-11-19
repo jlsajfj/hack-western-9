@@ -25,8 +25,8 @@ if __name__ == '__main__':
                 elif(motor_direction == 'a'):
                     print('motor running anti-clockwise\n')
                     spin.ccw(SPIN_COUNT)
-            else:
-                print('stopped')
-            #elif int.from_bytes(number, byteorder='big') == 2:
-            #    pass
+            elif int.from_bytes(number, byteorder='big') == 2:
+                pass
                 #print("Threshold reached for 2")
+        else:
+            print('stopped')
