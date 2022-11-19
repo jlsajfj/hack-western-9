@@ -18,10 +18,10 @@ int speed = 30;
 const int threshold = 12; // distance sensor is to ground at an angle
 
 // imaging variables 
-const int echoPin_1 = 2; // attach pin D2 Arduino to pin Echo of HC-SR04
-const int trigPin_1 = 3; //attach pin D3 Arduino to pin Trig of HC-SR04
-const int echoPin_2 = 8;
-const int trigPin_2 = 9;
+const int echoPin_1 = 8; // attach pin D2 Arduino to pin Echo of HC-SR04
+const int trigPin_1 = 9; //attach pin D3 Arduino to pin Trig of HC-SR04
+const int echoPin_2 = 2;
+const int trigPin_2 = 3;
 
 void setup() {
   pinMode(trigPin_1, OUTPUT); // Sets the trigPin as an OUTPUT
