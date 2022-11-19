@@ -15,8 +15,18 @@ function App() {
           A potential entry in your backyard has been detected.
         </p>
         <Stack spacing={2} direction="row">
-          <Button variant="contained" size="large">Approve</Button>
-          <Button variant="outlined" size="large">Deny</Button>
+          <Button variant="contained" size="large"
+            onClick={() => {
+              fetch("http://100.126.117.114:5000/photo/approve");
+            }}
+          >Approve
+          </Button>
+          <Button variant="outlined" size="large"
+            onClick={() => {
+              fetch("http://100.126.117.114:5000/photo/deny");;
+            }}>
+            Deny
+          </Button>
         </Stack>
       </header>
     </div>
