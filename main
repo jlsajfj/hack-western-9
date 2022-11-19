@@ -1,6 +1,19 @@
 #!/usr/bin/env python3
 import serial
 import random
+import RPi.GPIO as GPIO
+from time import sleep
+import sys
+
+#assign GPIO pins for motor
+motor_channel = (29,31,33,35)  
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+#for defining more than 1 GPIO channel as input/output use
+GPIO.setup(motor_channel, GPIO.OUT)
+
+motor_direction = input('select motor direction a=anticlockwise, c=clockwise: ')
+
 if __name__ == '__main__':
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser.reset_input_buffer()
@@ -9,5 +22,28 @@ if __name__ == '__main__':
         if number != b'':
             if int.from_bytes(number, byteorder='big') == 1:
                 print("Threshold reached for 1")
+                
+                if(motor_direction == 'c'):
+                    print('motor running clockwise\n')
+                    GPIO.output(motor_channel, (GPIO.HIGH,GPIO.LOW,GPIO.LOW,GPIO.HIGH))
+                    sleep(0.02)
+                    GPIO.output(motor_channel, (GPIO.HIGH,GPIO.HIGH,GPIO.LOW,GPIO.LOW))
+                    sleep(0.02)
+                    GPIO.output(motor_channel, (GPIO.LOW,GPIO.HIGH,GPIO.HIGH,GPIO.LOW))
+                    sleep(0.02)
+                    GPIO.output(motor_channel, (GPIO.LOW,GPIO.LOW,GPIO.HIGH,GPIO.HIGH))
+                    sleep(0.02)
+
+                elif(motor_direction == 'a'):
+                    print('motor running anti-clockwise\n')
+                    GPIO.output(motor_channel, (GPIO.HIGH,GPIO.LOW,GPIO.LOW,GPIO.HIGH))
+                    sleep(0.02)
+                    GPIO.output(motor_channel, (GPIO.LOW,GPIO.LOW,GPIO.HIGH,GPIO.HIGH))
+                    sleep(0.02)
+                    GPIO.output(motor_channel, (GPIO.LOW,GPIO.HIGH,GPIO.HIGH,GPIO.LOW))
+                    sleep(0.02)
+                    GPIO.output(motor_channel, (GPIO.HIGH,GPIO.HIGH,GPIO.LOW,GPIO.LOW))
+                    sleep(0.02)
+
             elif int.from_bytes(number, byteorder='big') == 2:
-                print("Threshold reached for 2")
+                #print("Threshold reached for 2")
