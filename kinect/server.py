@@ -1,4 +1,5 @@
 import flask, catch_photo, os, time
+from threading import Barrier
 
 
 app = flask.Flask(__name__)
@@ -8,6 +9,8 @@ def health_check():
     return 'alive', 200
     
 last_time = 0
+approval = 'waiting'
+barrier = Barrier(2)
 
 @app.route('/alert')
 def new_alert():
@@ -15,14 +18,42 @@ def new_alert():
     start = time.time()
     
     if start - last_time < 5:
-        return 'too recent', 400
+        return 'approve', 200
+    
+    global approval
+    approval = 'waiting'
     
     if catch_photo.take_photo():
         last_time = time.time()
-        #return flask.redirect('/photo', 302)
-        return 'done', 200
+        barrier.wait()
+        
+        return approval, 200
     
-    return 'failed', 400
+    return 'invalid', 400
+
+@app.route('/approve')
+def approve():
+    global approval
+    
+    if approval != 'waiting':
+        return '', 400
+    
+    approval = 'approve'
+    barrier.wait()
+    
+    return 'approved', 200
+
+@app.route('/deny')
+def deny():
+    global approval
+    
+    if approval != 'waiting':
+        return '', 400
+    
+    approval = 'deny'
+    barrier.wait()
+    
+    return 'denied', 200
 
 @app.route('/photo')
 def get_photo():

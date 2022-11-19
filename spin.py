@@ -37,10 +37,9 @@ def open_door(direction = 'left'):
         cw(135)
         sleep(5)
         ccw(135)
-        sleep(2)
     else:
         ccw(135)
         sleep(5)
         cw(135)
-        sleep(2)
+    sleep(2)
     return
