@@ -1,4 +1,3 @@
-import doggo_placeholder from './placeholder.jpeg';
 import './App.css';
 
 import * as React from 'react';
@@ -11,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={doggo_placeholder} className="doggo" alt="doggo" />
+        <img src={"http://100.126.117.114:5000/photo"} className="doggo" alt="doggo" />
         <p>
           A potential entry in your backyard has been detected.
         </p>
