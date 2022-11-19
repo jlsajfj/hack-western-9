@@ -15,7 +15,8 @@ Stepper hStepper(h_stepsPerRevolution, 8, 10, 9, 11);
 
 int speed = 30;
 
-const int threshold = 12; // distance sensor is to ground at an angle
+const int threshold_1 = 20; // distance sensor is to ground at an angle
+const int threshold_2 = 30;
 
 // imaging variables 
 const int echoPin_1 = 8; // attach pin D2 Arduino to pin Echo of HC-SR04
@@ -42,10 +43,10 @@ void loop() {
   int sensor1 = ultrasonic(trigPin_1, echoPin_1, medfilt_1);
   int sensor2 = ultrasonic(trigPin_2, echoPin_2, medfilt_2);
 
-  if(sensor1 <= threshold) {
+  if(sensor1 <= threshold_1) {
     Serial.write(1);
   }
-  if(sensor2 <= threshold) {
+  if(sensor2 <= threshold_2) {
     Serial.write(2);
   }
 
