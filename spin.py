@@ -34,7 +34,7 @@ def ccw(n):
 
 def open_door(direction = 'left'):
     if direction == 'left':
-        cw(135)
+        cw(150)
         sleep(5)
         ccw(135)
     else:
