@@ -1,18 +1,11 @@
 #!/usr/bin/env python3
 import serial
 import random
-import RPi.GPIO as GPIO
-from time import sleep
 import sys
+import spin
 
-#assign GPIO pins for motor
-motor_channel = (29,31,33,35)
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BOARD)
-#for defining more than 1 GPIO channel as input/output use
-GPIO.setup(motor_channel, GPIO.OUT)
 
-SLEEP_TIME = 0.005
+SPIN_COUNT = 10
 
 motor_direction = input('select motor direction a=anticlockwise, c=clockwise: ')
 
@@ -27,25 +20,11 @@ if __name__ == '__main__':
                 
                 if(motor_direction == 'c'):
                     print('motor running clockwise\n')
-                    GPIO.output(motor_channel, (GPIO.HIGH,GPIO.LOW,GPIO.LOW,GPIO.HIGH))
-                    sleep(SLEEP_TIME)
-                    GPIO.output(motor_channel, (GPIO.HIGH,GPIO.HIGH,GPIO.LOW,GPIO.LOW))
-                    sleep(SLEEP_TIME)
-                    GPIO.output(motor_channel, (GPIO.LOW,GPIO.HIGH,GPIO.HIGH,GPIO.LOW))
-                    sleep(SLEEP_TIME)
-                    GPIO.output(motor_channel, (GPIO.LOW,GPIO.LOW,GPIO.HIGH,GPIO.HIGH))
-                    sleep(SLEEP_TIME)
+                    spin.cw(SPIN_COUNT)
 
                 elif(motor_direction == 'a'):
                     print('motor running anti-clockwise\n')
-                    GPIO.output(motor_channel, (GPIO.HIGH,GPIO.LOW,GPIO.LOW,GPIO.HIGH))
-                    sleep(SLEEP_TIME)
-                    GPIO.output(motor_channel, (GPIO.LOW,GPIO.LOW,GPIO.HIGH,GPIO.HIGH))
-                    sleep(SLEEP_TIME)
-                    GPIO.output(motor_channel, (GPIO.LOW,GPIO.HIGH,GPIO.HIGH,GPIO.LOW))
-                    sleep(SLEEP_TIME)
-                    GPIO.output(motor_channel, (GPIO.HIGH,GPIO.HIGH,GPIO.LOW,GPIO.LOW))
-                    sleep(SLEEP_TIME)
+                    spin.ccw(SPIN_COUNT)
 
             elif int.from_bytes(number, byteorder='big') == 2:
                 pass
