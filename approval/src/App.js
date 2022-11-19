@@ -17,13 +17,13 @@ function App() {
         <Stack spacing={2} direction="row">
           <Button variant="contained" size="large"
             onClick={() => {
-              fetch("http://100.126.117.114:5000/photo/approve");
+              fetch("http://100.126.117.114:5000/approve");
             }}
           >Approve
           </Button>
           <Button variant="outlined" size="large"
             onClick={() => {
-              fetch("http://100.126.117.114:5000/photo/deny");;
+              fetch("http://100.126.117.114:5000/deny");;
             }}>
             Deny
           </Button>
