@@ -32,8 +32,15 @@ def ccw(n):
         GPIO.output(motor_channel, (GPIO.HIGH,GPIO.HIGH,GPIO.LOW,GPIO.LOW))
         sleep(SLEEP_TIME)
 
-def open_door():
-    cw(135)
-    sleep(5)
-    ccw(135)
+def open_door(direction = 'left'):
+    if direction == 'left':
+        cw(135)
+        sleep(5)
+        ccw(135)
+        sleep(2)
+    else:
+        ccw(135)
+        sleep(5)
+        cw(135)
+        sleep(2)
     return

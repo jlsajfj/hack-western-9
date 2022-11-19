@@ -13,9 +13,9 @@ if __name__ == '__main__':
         if number != b'':
             if int.from_bytes(number, byteorder='big') == 1:
                 print("Threshold reached for 1")
-                spin.open_door()
+                spin.open_door('left')
             elif int.from_bytes(number, byteorder='big') == 2:
-                pass
-                #print("Threshold reached for 2")
+                print("Threshold reached for 2")
+                spin.open_door('right')
             
             ser.reset_input_buffer()
