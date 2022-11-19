@@ -2,6 +2,6 @@ import spin, time
 
 
 while True:
-    spin.cw(125)
+    spin.cw(135)
     
     time.sleep(1)
