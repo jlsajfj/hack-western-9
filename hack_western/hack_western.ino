@@ -15,6 +15,8 @@ Stepper hStepper(h_stepsPerRevolution, 8, 10, 9, 11);
 
 int speed = 30;
 
+const int threshold = 12; // distance sensor is to ground at an angle
+
 // imaging variables 
 const int echoPin_1 = 2; // attach pin D2 Arduino to pin Echo of HC-SR04
 const int trigPin_1 = 3; //attach pin D3 Arduino to pin Trig of HC-SR04
@@ -30,7 +32,6 @@ void setup() {
   //hStepper.setSpeed(speed);
   //vStepper.setSpeed(speed);
   Serial.begin(9600); // // Serial Communication is starting with 9600 of baudrate speed
-  Serial.println("sensor_1 sensor_2");
 
 }
 
@@ -41,11 +42,17 @@ void loop() {
   int sensor1 = ultrasonic(trigPin_1, echoPin_1, medfilt_1);
   int sensor2 = ultrasonic(trigPin_2, echoPin_2, medfilt_2);
 
+  if(sensor1 <= threshold) {
+    Serial.write(1);
+  }
+  if(sensor2 <= threshold) {
+    Serial.write(2);
+  }
+
   Serial.print(sensor1);
   Serial.print(" ");
   Serial.println(sensor2);
   
-
   //hStepper.step(h_dir*h_stepsPerRevolution);
 }
 
