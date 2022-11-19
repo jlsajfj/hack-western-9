@@ -20,7 +20,7 @@ if __name__ == '__main__':
                 # spin.open_door('left')
             elif int.from_bytes(number, byteorder='big') == 2:
                 print("Threshold reached for 2")
-                response = requests.request("GET", alert_url, headers={}, data={})
+                # response = requests.request("GET", alert_url, headers={}, data={})
                 # spin.open_door('right')
             
             ser.reset_input_buffer()
