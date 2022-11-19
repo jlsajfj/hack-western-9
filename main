@@ -1,0 +1,13 @@
+#!/usr/bin/env python3
+import serial
+import random
+if __name__ == '__main__':
+    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+    ser.reset_input_buffer()
+    while True:
+        number = ser.read()
+        if number != b'':
+            if int.from_bytes(number, byteorder='big') == 1:
+                print("Threshold reached for 1")
+            elif int.from_bytes(number, byteorder='big') == 2:
+                print("Threshold reached for 2")
