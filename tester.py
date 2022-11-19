@@ -1,5 +1,7 @@
-import spin
+import spin, time
 
 
 while True:
-    spin.cw(1)
+    spin.cw(50)
+    
+    time.sleep(1)
