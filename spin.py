@@ -34,6 +34,6 @@ def ccw(n):
 
 def open_door():
     cw(135)
-    time.sleep(5)
+    sleep(5)
     ccw(135)
     return
