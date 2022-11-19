@@ -17,10 +17,14 @@ if __name__ == '__main__':
         if number != b'':
             if int.from_bytes(number, byteorder='big') == 1:
                 print("Threshold reached for 1")
+                
                 spin.open_door('left')
             elif int.from_bytes(number, byteorder='big') == 2:
                 print("Threshold reached for 2")
-                requests.request("GET", alert_url, headers={}, data={})
-                spin.open_door('right')
+                
+                response = requests.request("GET", alert_url, headers={}, data={})
+                
+                if response.text == 'approve':
+                    spin.open_door('right')
             
             ser.reset_input_buffer()
