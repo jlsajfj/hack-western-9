@@ -46,4 +46,5 @@ if __name__ == '__main__':
                     sleep(0.02)
 
             elif int.from_bytes(number, byteorder='big') == 2:
+                pass
                 #print("Threshold reached for 2")
