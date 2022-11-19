@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
-SLEEP_TIME = 0.005
+SLEEP_TIME = 0.002
 
 #assign GPIO pins for motor
 motor_channel = (29,31,33,35)
