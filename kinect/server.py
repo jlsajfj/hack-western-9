@@ -1,10 +1,9 @@
 import flask, catch_photo, os, time
 from threading import Barrier
-from flask_cors import CORS
+from flask_cors import cross_origin
 
 
 app = flask.Flask(__name__)
-CORS(app)
 
 @app.route('/health-check', methods=['GET'])
 def health_check():
@@ -34,11 +33,12 @@ def new_alert():
     return 'invalid', 400
 
 @app.route('/approve')
+@cross_origin()
 def approve():
     global approval
     
     if approval != 'waiting':
-        return 'no request', 200
+        return 'no pending request', 200
     
     approval = 'approve'
     barrier.wait()
@@ -46,11 +46,12 @@ def approve():
     return 'approved', 200
 
 @app.route('/deny')
+@cross_origin()
 def deny():
     global approval
     
     if approval != 'waiting':
-        return 'no request', 200
+        return 'no pending request', 200
     
     approval = 'deny'
     barrier.wait()
