@@ -4,9 +4,13 @@ import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+toast.configure()
+
 // maybe insert some logic that changes the text based on image displayed
 
-function Main(props) {
+function BodyData(props) {
   return (
     <header className="App-header">
       <img src={"http://100.126.117.114:5000/photo"} className="doggo" alt="doggo" />
@@ -17,12 +21,14 @@ function Main(props) {
         <Button variant="contained" size="large"
           onClick={() => {
             fetch("http://100.126.117.114:5000/approve");
+            //notify()
           }}
         >Approve
         </Button>
         <Button variant="outlined" size="large"
           onClick={() => {
             fetch("http://100.126.117.114:5000/deny");
+            //notify()
           }}>
           Deny
         </Button>
@@ -31,10 +37,15 @@ function Main(props) {
   );
 }
 
+function notify() {
+  // Calling toast method by passing string
+  toast('potatos')
+}
+
 function App() {
   return (
     <div className="App">
-      <Main />
+      <BodyData />
     </div>
   );
 }
