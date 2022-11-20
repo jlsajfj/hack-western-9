@@ -1,8 +1,10 @@
 import flask, catch_photo, os, time
 from threading import Barrier
+from flask_cors import CORS
 
 
 app = flask.Flask(__name__)
+CORS(app)
 
 @app.route('/health-check', methods=['GET'])
 def health_check():
@@ -36,7 +38,7 @@ def approve():
     global approval
     
     if approval != 'waiting':
-        return 'no request', 400
+        return 'no request', 200
     
     approval = 'approve'
     barrier.wait()
@@ -48,7 +50,7 @@ def deny():
     global approval
     
     if approval != 'waiting':
-        return 'no request', 400
+        return 'no request', 200
     
     approval = 'deny'
     barrier.wait()
