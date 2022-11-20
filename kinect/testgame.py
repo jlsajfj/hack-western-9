@@ -7,6 +7,7 @@ import _ctypes
 import pygame
 import sys
 import numpy as np
+from datetime import datetime
 
 
 if sys.hexversion >= 0x03000000:
@@ -91,6 +92,7 @@ class InfraRedRuntime(object):
                 pygame.display.flip()
                 
                 pygame.image.save(self._screen, "screenshot.jpg")
+                pygame.image.save(self._screen, './archive/' + datetime.now().strftime('%Y-%m-%d %H%M%S') + '_capture.jpg')
                 self._done = True
 
             # --- Limit to 60 frames per second
