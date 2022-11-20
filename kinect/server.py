@@ -36,7 +36,7 @@ def approve():
     global approval
     
     if approval != 'waiting':
-        return '', 400
+        return 'no request', 400
     
     approval = 'approve'
     barrier.wait()
@@ -48,7 +48,7 @@ def deny():
     global approval
     
     if approval != 'waiting':
-        return '', 400
+        return 'no request', 400
     
     approval = 'deny'
     barrier.wait()

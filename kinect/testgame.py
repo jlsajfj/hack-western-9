@@ -93,6 +93,7 @@ class InfraRedRuntime(object):
                 
                 pygame.image.save(self._screen, "screenshot.jpg")
                 pygame.image.save(self._screen, './archive/' + datetime.now().strftime('%Y-%m-%d %H%M%S') + '_capture.jpg')
+                
                 self._done = True
 
             # --- Limit to 60 frames per second
